@@ -1,5 +1,18 @@
 package main
 
+import "github.com/20pa5a1210/pokedex-cli-go/internal/pokeapi"
+
+type config struct {
+	pokeapiClient pokeapi.Client
+	nextLocURL    *string
+	prevLocURL    *string
+}
+
 func main() {
-	startRepl()
+
+	cfg := config{
+		pokeapiClient: pokeapi.NewClient(),
+	}
+
+	startRepl(&cfg)
 }
