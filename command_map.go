@@ -6,7 +6,7 @@ import (
 	"log"
 )
 
-func callbackMap(cfg *config) error {
+func callbackMap(cfg *config,args ...string) error {
 
 	resp, err := cfg.pokeapiClient.ListLocationAreas(cfg.nextLocURL)
 
@@ -25,7 +25,7 @@ func callbackMap(cfg *config) error {
 
 }
 
-func callbackMapb(cfg *config) error {
+func callbackMapb(cfg *config,args ...string) error {
 	if cfg.nextLocURL == nil {
 		return errors.New("you're on first page")
 	}
@@ -38,7 +38,7 @@ func callbackMapb(cfg *config) error {
 
 	fmt.Println("Location Areas")
 	for _, area := range resp.Results {
-		fmt.Printf(" -- %s\n", area.Name)
+		fmt.Printf(" --%s\n", area.Name)
 	}
 	cfg.nextLocURL = resp.Next
 	cfg.prevLocURL = resp.Previous

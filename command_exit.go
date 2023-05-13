@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-func callbackExit(cfg *config) error{
+func callbackExit(cfg *config, args ...string) error {
 	fmt.Println("Exited From Terminal")
 	os.Exit(0)
 	return nil
