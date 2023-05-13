@@ -16,7 +16,7 @@ func callbackMap(cfg *config) error {
 
 	fmt.Println("Location Areas")
 	for _, area := range resp.Results {
-		fmt.Printf(" --%s\n", area.Name)
+		fmt.Printf(" -- %s\n", area.Name)
 	}
 	cfg.nextLocURL = resp.Next
 	cfg.prevLocURL = resp.Previous
@@ -38,7 +38,7 @@ func callbackMapb(cfg *config) error {
 
 	fmt.Println("Location Areas")
 	for _, area := range resp.Results {
-		fmt.Printf(" --%s\n", area.Name)
+		fmt.Printf(" -- %s\n", area.Name)
 	}
 	cfg.nextLocURL = resp.Next
 	cfg.prevLocURL = resp.Previous
