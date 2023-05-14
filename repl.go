@@ -79,6 +79,11 @@ func getCommands() map[string]cliCommand {
 			description: "exists from the cli",
 			callback:    callbackExit,
 		},
+		"inspect": {
+			name:        "inspect {pokemon-name}",
+			description: "Inspects the caught pokemon stats",
+			callback:    callbackInspect ,
+		},
 	}
 }
 

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"math/rand"
+	"time"
 )
 
 func callbackCatch(cfg *config, args ...string) error {
@@ -14,6 +15,11 @@ func callbackCatch(cfg *config, args ...string) error {
 	}
 	pokemonName := args[0]
 
+	_, ok := cfg.caughtPokemon[pokemonName]
+	if ok {
+		return fmt.Errorf("pokemon already caught")
+	}
+
 	resp, err := cfg.pokeapiClient.GetPokemon(pokemonName)
 
 	if err != nil {
@@ -22,9 +28,12 @@ func callbackCatch(cfg *config, args ...string) error {
 
 	const threshold = 50
 
-	randomNum := rand.Intn(resp.BaseExperience)
-	fmt.Println(resp.BaseExperience, randomNum, threshold)
-	if randomNum < threshold {
+	// randomNum := rand.Intn(resp.BaseExperience)
+	// randomNum := rand.Int()
+	rand.Seed(time.Now().UnixNano()) // seed the random number generator with the current time
+	randNumber := rand.Intn(21) + 40
+	fmt.Println(randNumber, threshold)
+	if randNumber > threshold {
 		return fmt.Errorf("failed to catch the pokemon %s", pokemonName)
 	}
 	cfg.caughtPokemon[pokemonName] = resp
